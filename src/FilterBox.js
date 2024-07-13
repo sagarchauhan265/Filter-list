@@ -16,7 +16,19 @@ function FilterBox() {
     setItems(sortedItems);
   };
 
-  
+  const DeleteOne = (ids) => {
+    const AfterDelete = [...items].filter((i, index) => { return i.id !== ids });
+    setItems(AfterDelete);
+    alert('Products have been deleted ');
+  };
+
+  const AddNewOne =()=> { 
+   
+    setItems([...items,{...newItem,id: Date.now()}]);
+    setNewItem({ id: '', name: '', color: '', brand: '', price: '' });
+   }
+
+
   useEffect(() => {
     setItems(products);
   }, []);
@@ -24,44 +36,44 @@ function FilterBox() {
   return (
     <div style={styles.app}>
       <div style={styles.filter}>
-        <input 
-          type="text" 
-          placeholder="Search..." 
-          value={searchTerm} 
-         
-          style={styles.input} 
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+
+          style={styles.input}
         />
         <button style={styles.button} onClick={sortAscending}>Ascending</button>
         <button style={styles.button} onClick={sortDescending}>Descending</button>
-        <input 
-          type="text" 
-          placeholder="Name" 
-          value={newItem.name} 
-     
-          style={styles.input} 
+        <input
+          type="text"
+          placeholder="Name"
+          value={newItem.name}
+          onChange={(i)=> { setNewItem({...newItem,name: i.target.value})}}
+          style={styles.input}
         />
-        <input 
-          type="text" 
-          placeholder="Color" 
-          value={newItem.color} 
-          
-          style={styles.input} 
+        <input
+          type="text"
+          placeholder="Color"
+          value={newItem.color}
+          onChange={(i)=> { setNewItem({...newItem,color: i.target.value})}}
+          style={styles.input}
         />
-        <input 
-          type="text" 
-          placeholder="Brand" 
-          value={newItem.brand} 
-     
-          style={styles.input} 
+        <input
+          type="text"
+          placeholder="Brand"
+          value={newItem.brand}
+          onChange={(i)=> { setNewItem({...newItem,brand: i.target.value})}}
+          style={styles.input}
         />
-        <input 
-          type="text" 
-          placeholder="Price" 
-          value={newItem.price} 
-   
-          style={styles.input} 
+        <input
+          type="text"
+          placeholder="Price"
+          value={newItem.price}
+          onChange={(i)=> { setNewItem({...newItem,price: i.target.value})}}
+          style={styles.input}
         />
-        <button style={styles.button} >Add Item</button>
+        <button style={styles.button} onClick={AddNewOne}>Add Item</button>
       </div>
       <div style={styles.itemList}>
         <ul style={styles.ul}>
@@ -72,8 +84,8 @@ function FilterBox() {
               <p>{item.color}</p>
               <p>{item.brand}</p>
               <p><strong>{item.price}</strong></p>
-              <button style={styles.button} >Modify</button>
-              <button style={styles.button} >Delete</button>
+              <button style={styles.button}  >Modify</button>
+              <button style={styles.button} onClick={()=> DeleteOne(item.id)} >Delete</button>
             </li>
           ))}
         </ul>
