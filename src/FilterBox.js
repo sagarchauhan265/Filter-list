@@ -22,13 +22,17 @@ function FilterBox() {
     alert('Products have been deleted ');
   };
 
-  const AddNewOne =()=> { 
-   
-    setItems([...items,{...newItem,id: Date.now()}]);
+  const AddNewOne = () => {
+
+    setItems([...items, { ...newItem, id: Date.now() }]);
     setNewItem({ id: '', name: '', color: '', brand: '', price: '' });
-   }
+  }
 
-
+  const SearchElement = (s) => {
+    const UpdateList = items.filter((i) => { return i.name.toLowerCase().includes(s.toLowerCase()) });
+    console.log("update",UpdateList);
+    setItems(UpdateList);
+  }
   useEffect(() => {
     setItems(products);
   }, []);
@@ -40,7 +44,7 @@ function FilterBox() {
           type="text"
           placeholder="Search..."
           value={searchTerm}
-
+          onChange={(s) => { SearchElement(s.target.value) }}
           style={styles.input}
         />
         <button style={styles.button} onClick={sortAscending}>Ascending</button>
@@ -49,28 +53,28 @@ function FilterBox() {
           type="text"
           placeholder="Name"
           value={newItem.name}
-          onChange={(i)=> { setNewItem({...newItem,name: i.target.value})}}
+          onChange={(i) => { setNewItem({ ...newItem, name: i.target.value }) }}
           style={styles.input}
         />
         <input
           type="text"
           placeholder="Color"
           value={newItem.color}
-          onChange={(i)=> { setNewItem({...newItem,color: i.target.value})}}
+          onChange={(i) => { setNewItem({ ...newItem, color: i.target.value }) }}
           style={styles.input}
         />
         <input
           type="text"
           placeholder="Brand"
           value={newItem.brand}
-          onChange={(i)=> { setNewItem({...newItem,brand: i.target.value})}}
+          onChange={(i) => { setNewItem({ ...newItem, brand: i.target.value }) }}
           style={styles.input}
         />
         <input
           type="text"
           placeholder="Price"
           value={newItem.price}
-          onChange={(i)=> { setNewItem({...newItem,price: i.target.value})}}
+          onChange={(i) => { setNewItem({ ...newItem, price: i.target.value }) }}
           style={styles.input}
         />
         <button style={styles.button} onClick={AddNewOne}>Add Item</button>
@@ -85,7 +89,7 @@ function FilterBox() {
               <p>{item.brand}</p>
               <p><strong>{item.price}</strong></p>
               <button style={styles.button}  >Modify</button>
-              <button style={styles.button} onClick={()=> DeleteOne(item.id)} >Delete</button>
+              <button style={styles.button} onClick={() => DeleteOne(item.id)} >Delete</button>
             </li>
           ))}
         </ul>
