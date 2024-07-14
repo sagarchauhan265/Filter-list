@@ -1,8 +1,6 @@
-Certainly! Here's a README content that you can use for your GitHub repository:
 
----
 
-# FilterBox Component
+# Filter-list Component
 
 This is a React component that allows users to filter, sort, add, delete, and modify a list of products. It includes a search functionality to find items by name, as well as buttons to sort items in ascending and descending order by ID.
 
@@ -28,13 +26,13 @@ Make sure you have the following installed on your local development machine:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/filterbox-component.git
+   git clone https://github.com/sagarchauhan265/Filter-list.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd filterbox-component
+   cd Filter-list
    ```
 
 3. Install the dependencies:
@@ -85,6 +83,3 @@ Contributions are welcome! Please open an issue or submit a pull request.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-
-Feel free to customize the content according to your project details and preferences.
